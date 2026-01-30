@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crop Recommendation System</title>
+  <style>
+    body {
+  font-family: Arial;
+  text-align: center;
+  background: #e8f5e9;
+}
+
+h1 {
+  color: #2e7d32;
+}
+
+select, button {
+  padding: 10px;
+  margin: 10px;
+  width: 220px;
+  font-size: 16px;
+}
+
+button {
+  background: #43a047;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2e7d32;
+}
+.success {
+  color: green;
+}
+.warning {
+  color: red;
+}
+
+#result {
+  transition: transform 0.3s ease;
+}
+#result:hover {
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>🌾 Crop Recommendation System</h1>
+
+  <select id="soil">
+    <option value="">Select Soil Type</option>
+    <option value="black">Black Soil</option>
+    <option value="red">Red Soil</option>
+    <option value="alluvial">Alluvial Soil</option>
+  </select>
+
+  <select id="season">
+    <option value="">Select Season</option>
+    <option value="summer">Summer</option>
+    <option value="rainy">Rainy</option>
+    <option value="winter">Winter</option>
+  </select>
+
+  <br><br>
+  <button onclick="recommendCrop()">Recommend Crop</button>
+
+  <h2 id="result"></h2>
+  <button onclick="resetForm()">Reset</button>
+
+
+  <script>
+    function recommendCrop() {
+  const soil = document.getElementById("soil").value;
+  const season = document.getElementById("season").value;
+  let crop = "";
+
+  if (soil === "black" && season === "rainy") {
+    crop = "Cotton 🌿";
+  } else if (soil === "red" && season === "summer") {
+    crop = "Groundnut 🌱";
+  } else if (soil === "alluvial" && season === "winter") {
+    crop = "Wheat 🌾";
+  } else if (soil === "black" && season === "winter") {
+    crop = "Gram 🌱";
+  } else {
+    crop = "No suitable crop found";
+  }
+  if (soil === "black" && season === "rainy") {
+  crop = {
+    name: "Cotton 🌿",
+    water: "High",
+    duration: "160–180 days"
+  };
+}else if (soil === "red" && season === "rainy") {
+  crop = {
+    name: "Millets 🌾",
+    water: "Medium",
+    duration: "90 days"
+  };
+}
+
+
+
+  document.getElementById("result").innerText =
+    "Recommended Crop: " + crop;
+}
+
+const result = document.getElementById("result");
+
+if (crop.name) {
+  result.className = "success";
+} else {
+  result.className = "warning";
+}
+
+function resetForm() {
+  document.getElementById("soil").value = "";
+  document.getElementById("season").value = "";
+  document.getElementById("result").innerText = "";
+}
+
+
+  </script>
+</body>
+</html>
